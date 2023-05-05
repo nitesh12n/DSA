@@ -33,18 +33,36 @@ class Solution {
     return false;
         
     }
-    // Function to detect cycle in an undirected graph.
-    bool isCycle(int V, vector<int> adj[]) {
-        vector<int>vis(V, 0);
+    bool dfs(int i, int parent, vector<int> adj[], vector<int>& vis)
+    {
+        vis[i] = 1;
         
-        
-        for(int i=0; i<V; i++)
+        for (auto node : adj[i])
         {
-            if (vis[i] == 0 && isCycle(i, adj, vis))
+            if(vis[node] ==0)
+            {
+                if(dfs(node, i, adj, vis) == true)
+                    return true;
+            }
+            else if(node != parent)
                 return true;
         }
         return false;
     }
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<int>vis(V, 0);
+        
+        for(int i=0; i<V; i++)
+        {
+           if (vis[i] == 0 && dfs(i, -1,adj, vis))
+                return true;
+        }
+        return false;
+    }
+    
+    
+    
 };
 
 //{ Driver Code Starts.
