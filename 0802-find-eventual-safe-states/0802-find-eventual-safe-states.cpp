@@ -9,7 +9,7 @@ public:
         {
             if(vis[n]==0)
             {
-                if(dfs(graph, vis, path, check, n) == true)
+                if(dfs(graph, vis, path, check, n))
                     return true;    
             }
             else if(path[n] == 1)
