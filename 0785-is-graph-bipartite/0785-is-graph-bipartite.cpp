@@ -1,52 +1,34 @@
 class Solution {
-private:
-    bool areAllVisited(vector<int>&color)
+public:
+    
+    bool dfs(vector<vector<int>>& graph, vector<int>&color, int c, int node)
     {
-        for(auto i : color)
+        color[node] = c;
+        
+        for(auto n : graph[node])
         {
-            if (i == -1)
+            if(color[n] == -1)
+            {
+                if(dfs(graph, color, !c, n) == false)
+                    return false;
+            }
+            else if(color[n] == c)
                 return false;
+                
         }
-     return true;
+        return true;
     }
     
-public:
     bool isBipartite(vector<vector<int>>& graph) {
-      int n = graph.size();
         
-      vector<int>color(n,-1);
-      
-      queue<int>q;
+        int n = graph.size();
+        vector<int>color(n, -1);
         
-      while(!areAllVisited(color))
-      {    
-          for(int i=0; i<n;i++)
-          {
-            if (color[i] == -1)
-                {
-                    q.push(i);
-                    color[i] = 0;
-                    break;
-                }
-          }
-          while(!q.empty())
-          {
-              int node = q.front();
-              q.pop();
-              int c = color[node]^1;
-
-              for(auto n:graph[node])
-              {
-                  if(color[n] == -1)
-                  {
-                      color[n] = c;
-                      q.push(n);
-                  }
-                  else if(color[n] == color[node])
-                      return false;
-              } 
-          }
-      }
-     return true;   
+        for(int i = 0; i<n;i++)
+        {
+            if(color[i] == -1 && dfs(graph, color, 0, i) == false)
+                return false;
+        }
+    return true;    
     }
 };
