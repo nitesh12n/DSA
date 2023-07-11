@@ -9,20 +9,11 @@ public:
         {
             if(vis[n]==0)
             {
-                vis[n]=1;
-                path[n]=1;
                 if(dfs(graph, vis, path, check, n) == true)
-                {
-                    check[node]=0;
                     return true;    
-                }
-                path[n]=0;
             }
             else if(path[n] == 1)
-            {
-                check[node]=0;
                 return true;
-            }
         }
     check[node] = 1;
     path[node]=0;
