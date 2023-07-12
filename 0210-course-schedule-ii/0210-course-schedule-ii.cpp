@@ -1,42 +1,55 @@
 class Solution {
+private:
+
+    bool dfs(vector<vector<int>>& graph, vector<int>&vis, vector<int>&path, int node, stack<int>&st)
+    {
+    vis[node]=1;
+    path[node]=1;
+
+        for(auto n : graph[node])
+        {
+            if(vis[n]==0)
+            {
+                if(dfs(graph, vis, path, n, st) == false)
+                    return false;    
+            }
+            else if(path[n] == 1)
+                return false;
+        }
+    st.push(node);
+    path[node]=0;    
+    return true;    
+    }
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         
-        vector<vector<int>>graph(numCourses);
-        vector<int>indegree(numCourses, 0);
-        vector<int>res;
-        queue<int>q;
+       vector<vector<int>>graph(numCourses);
 
-        for(int i = 0; i<prerequisites.size();i++)
+       for(int i = 0; i<prerequisites.size();i++)
             graph[prerequisites[i][1]].push_back(prerequisites[i][0]);
+       
+       vector<int>vis(numCourses,0);
+       vector<int>path(numCourses,0);    
+	   stack<int>st;
+	   vector<int>res;
         
-        for(int i =0; i<numCourses;i++)
-        {
-            for(auto n : graph[i])
-                indegree[n]++;
-        }
-        
-        for(int i =0; i<numCourses;i++)
-        {
-            if(indegree[i]==0)
-                q.push(i);
-        }
-        while(!q.empty())
-        {
-            int node = q.front();
-            q.pop();
-            res.push_back(node);
-            
-            for(auto i : graph[node])
+	   for(int i = 0; i<numCourses;i++)
+	   {
+	        if(vis[i] == 0)
             {
-                indegree[i]--;
-                if(indegree[i]==0)
-                    q.push(i);
+                if(dfs(graph,vis,path,i,st) == false)
+                    return {};
             }
-        }
-        if(res.size()==numCourses)
-            return res;
-        return {};
-        
+           
+	   }
+	   
+	   while(!st.empty())
+	   {
+	       res.push_back(st.top());
+	       st.pop();
+	   }
+	 if(res.size() == numCourses)
+         return res;
+     return {};   
     }
 };
