@@ -20,7 +20,8 @@ public:
             int eff = data.first;
             int x = data.second.first;
             int y=data.second.second;
-            
+            if(x==rows-1 && y==columns-1)
+                return eff;
             for(int i=0;i<4;i++)
             {
                 int newX = x+deltaX[i];
