@@ -28,7 +28,7 @@ public:
             
             for(auto i : adj[node])
             {
-               if(i.second + cost < dist[i.first] and stops <= k)
+               if(i.second + cost < dist[i.first])
                {
                    dist[i.first] = i.second+cost;
                    q.push({stops+1, {i.first, dist[i.first]}});
