@@ -3,7 +3,7 @@ public:
     
     int coinChange(vector<int>& coins, int amount, int index, vector<vector<int>>& dp)
     {
-        if((index<0 and amount != 0) || amount <0)
+        if(index<0 || amount <0)
             return 1e7;
         if(amount==0)
             return 0;
