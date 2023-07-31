@@ -23,7 +23,7 @@ public:
     int minDepth(TreeNode* root) {
         
         int res = minD(root);
-        if(res == 1e7)
+        if(res >= 1e7)
             return 0;
         return res;
     }
