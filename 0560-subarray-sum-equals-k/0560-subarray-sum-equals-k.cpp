@@ -9,8 +9,6 @@ public:
         {
             sum+=num;
             res+=m[sum-k];
-            //if(sum == k)
-             //   res++;
             m[sum]++;
         }
         return res;
