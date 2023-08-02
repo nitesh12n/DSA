@@ -7,8 +7,7 @@ public:
         for(int num : nums)
         {
             sum+=num;
-            if(m.find(sum-k) != m.end())
-                res+=m[sum-k];
+            res+=m[sum-k];
             if(sum == k)
                 res++;
             m[sum]++;
