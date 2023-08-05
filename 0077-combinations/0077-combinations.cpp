@@ -6,13 +6,16 @@ class Solution {
             res.push_back(temp);
             return;
         }
-        if(i == n+1)
+        if(i > n)
             return;
         
-        combine(n, k, i+1, temp, res);
-        temp.push_back(i);
-        combine(n, k-1, i+1, temp, res);
-        temp.pop_back();
+        if(k <= n-i+1)
+        {
+            combine(n, k, i+1, temp, res);
+            temp.push_back(i);
+            combine(n, k-1, i+1, temp, res);
+            temp.pop_back();
+        }
     }
 public:
     vector<vector<int>> combine(int n, int k) {
