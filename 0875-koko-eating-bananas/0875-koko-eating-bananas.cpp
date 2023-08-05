@@ -9,7 +9,8 @@ class Solution {
                 else
                 {
                     hours+=piles[i]/k;
-                    hours+=piles[i]%k > 0 ? 1 : 0;
+                    if(piles[i]%k > 0)
+                        hours++;
                 }
                 if(hours > h)
                     break;
