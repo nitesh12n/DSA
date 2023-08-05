@@ -1,16 +1,16 @@
 class Solution {
-    void generate(int n, int open, int close, string temp, vector<string>&res)
+    void generate(int open, int close, string temp, vector<string>&res)
     {
-        if(temp.size() == 2*n)
+        if(open+close==0)
         {
             res.push_back(temp);
             return;
         }
         
-        if(open < n)
-            generate(n, open+1, close, temp + '(', res);
-        if(open > close)
-            generate(n, open, close + 1, temp + ')', res);
+        if(open > 0)
+            generate(open - 1, close, temp + '(', res);
+        if(open < close)
+            generate(open, close - 1, temp + ')', res);
         
     }
 public:
@@ -18,7 +18,7 @@ public:
      
         vector<string>res;
         string temp;
-        generate(n, 0, 0, temp, res);
+        generate(n, n, temp, res);
         return res;
     }
 };
