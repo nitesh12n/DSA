@@ -1,5 +1,5 @@
 class Solution {
-    void combination(int k, int n, int i, vector<int>& temp, vector<vector<int>>& res)
+    void combination(int k, int n, int num, vector<int>& temp, vector<vector<int>>& res)
     {
         if(n==0 and k==0)
         {
@@ -7,15 +7,15 @@ class Solution {
             return;
         }
         
-        if(i>9 or k==0 or n < 0)
+        if(k==0 or n < 0)
             return;
         
-        //not take
-        combination(k, n, i+1, temp, res);
-        //take
-        temp.push_back(i);
-        combination(k-1, n-i, i+1, temp, res);
-        temp.pop_back();
+        for(int i = num; i<=9; i++)
+        { 
+            temp.push_back(i);
+            combination(k-1, n-i, i+1, temp, res);
+            temp.pop_back();
+        }
     }
     
 public:
