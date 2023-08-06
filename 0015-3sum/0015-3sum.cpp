@@ -27,7 +27,9 @@ public:
                      k--;
              }
          }
-         i++;      
+         i++;
+         while(i < n-2 and nums[i] == nums[i-1])
+            i++;      
      }
     return vector<vector<int>>(s.begin(), s.end());
     }
