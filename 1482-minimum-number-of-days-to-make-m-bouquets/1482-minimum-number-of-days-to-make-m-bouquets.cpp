@@ -25,12 +25,15 @@ class Solution {
 public:
     int minDays(vector<int>& bloomDay, int m, int k) {
         
-        int l = 1, n = bloomDay.size();
+        int l = INT_MAX, n = bloomDay.size();
         int r=0,res=-1;
     
         
         for(auto d : bloomDay)
+        {
             r = max(d, r);
+            l = min(d, l);
+        }
         
         while(l <= r)
         {
