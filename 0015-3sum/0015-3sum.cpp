@@ -10,7 +10,7 @@ public:
      {
          int j = i + 1;
          int k = n-1;
-         while(j < k)
+         while(j < k and k < n)
          { 
              int sum =nums[i] + nums[j] + nums[k];
              if(sum < 0)
@@ -20,7 +20,11 @@ public:
              else
              {
                  s.insert({nums[i], nums[j], nums[k]});
-                 j++;
+                 j++,k--;
+                 while(j < n and nums[j] == nums[j-1])
+                     j++;
+                 while( k > i and nums[k] == nums[k+1])
+                     k--;
              }
          }
          i++;      
