@@ -5,7 +5,7 @@ public:
      sort(nums.begin(), nums.end());
      int n = nums.size();
      int i=0;
-     set<vector<int>>s;
+     vector<vector<int>>s;
      while(i < n-2)
      {
          int j = i + 1;
@@ -19,7 +19,7 @@ public:
                  k--;
              else
              {
-                 s.insert({nums[i], nums[j], nums[k]});
+                 s.push_back({nums[i], nums[j], nums[k]});
                  j++,k--;
                  while(j < n and nums[j] == nums[j-1])
                      j++;
@@ -31,6 +31,6 @@ public:
          while(i < n-2 and nums[i] == nums[i-1])
             i++;      
      }
-    return vector<vector<int>>(s.begin(), s.end());
+    return s;
     }
 };
