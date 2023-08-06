@@ -20,7 +20,7 @@ public:
              else
              {
                  s.insert({nums[i], nums[j], nums[k]});
-                 j++;
+                 k--;
              }
          }
          i++;      
