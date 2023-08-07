@@ -1,8 +1,8 @@
 class Solution {
-    int getDays(vector<int>& weights, int mid)
+    bool isPossible(vector<int>& weights, int mid, int days)
     {
         int capacity = mid;
-        int days=1;
+        int d=1;
         for(auto weight : weights)
         {
             if(capacity >=weight)
@@ -10,10 +10,12 @@ class Solution {
             else
             {
                 capacity = mid - weight;
-                days++;
+                days--;
+                //if(d > days)
+                //    return false;
             }
         }
-    return days;
+    return days >0; //true;
     }
 public:
     int shipWithinDays(vector<int>& weights, int days) {
@@ -30,7 +32,7 @@ public:
         {
             int mid = low +(high-low)/2;
             
-            if(getDays(weights, mid) <= days)
+            if(isPossible(weights, mid, days))
             {
                 res = mid;
                 high = mid -1;
