@@ -2,7 +2,6 @@ class Solution {
     bool isPossible(vector<int>& weights, int mid, int days)
     {
         int capacity = mid;
-        int d=1;
         for(auto weight : weights)
         {
             if(capacity >=weight)
