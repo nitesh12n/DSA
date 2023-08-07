@@ -19,7 +19,7 @@ class Solution {
 public:
     int shipWithinDays(vector<int>& weights, int days) {
         
-        int low =0 ,high =0,res;
+        int low =0 ,high =0,res, mid;
             
         for(auto num : weights)
         {
@@ -29,7 +29,7 @@ public:
         
         while(low<=high)
         {
-            int mid = low +(high-low)/2;
+            mid = low +(high-low)/2;
             
             if(isPossible(weights, mid, days))
             {
