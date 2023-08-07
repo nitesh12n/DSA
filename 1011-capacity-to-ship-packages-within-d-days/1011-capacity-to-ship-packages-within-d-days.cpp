@@ -11,11 +11,11 @@ class Solution {
             {
                 capacity = mid - weight;
                 days--;
-                //if(d > days)
-                //    return false;
+                if(days == 0)
+                    return false;
             }
         }
-    return days >0; //true;
+    return true;
     }
 public:
     int shipWithinDays(vector<int>& weights, int days) {
