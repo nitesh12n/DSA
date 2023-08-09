@@ -9,10 +9,20 @@ public:
         if(missingCount < k)
             return arr[n-1] + k - missingCount;
         
-    
-        while( i < n and arr[i] - i - 1 < k)
-            i++;
-                
+        int low = 0, high = n-1, mid;
+        while(low <= high)
+        {
+            mid = low + (high - low)/2;
+        
+            if(arr[mid] - mid - 1 >= k)
+            {
+                i = mid;
+                high = mid - 1;
+            }
+            else
+                low = mid + 1;
+        }
+        
         missingCount = arr[i] - i - 1; 
         return arr[i] - (missingCount - k  + 1);
     }
