@@ -29,16 +29,14 @@ public:
         low/=k;
         
         
-    while(low <= high)
+    while(high-low > 1e-6)
     {
         double mid = low + (high-low)/2;
         
         if(isPossible(stations, k, mid))
-        {
-            high = mid - 1e-6;
-        }
+            high = mid;
         else
-            low = mid + 1e-6;
+            low = mid;
     }
     return low;
     }
