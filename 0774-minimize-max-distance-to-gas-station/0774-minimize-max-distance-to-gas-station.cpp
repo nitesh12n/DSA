@@ -7,7 +7,7 @@ class Solution {
         for(int i =1; i < stations.size(); i++)
         {
             double dist = stations[i] - stations[i-1];        
-            if (dist==0)
+            if (dist==0 || maxDist == 0)
                 continue;
             if(dist > maxDist)
                  st+= dist/maxDist;
