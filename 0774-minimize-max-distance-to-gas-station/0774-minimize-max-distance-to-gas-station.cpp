@@ -2,16 +2,13 @@ class Solution {
     
     bool isPossible(vector<int>& stations, int k, double maxDist)
     {
-        int sum=0, st=0;
+        int st=0;
         
         for(int i =1; i < stations.size(); i++)
         {
-            double dist = stations[i] - stations[i-1];
-            
+            double dist = stations[i] - stations[i-1];            
             if(dist > maxDist)
-            {
                  st+= dist/maxDist;
-            }
         }
     return st <= k;
     }
