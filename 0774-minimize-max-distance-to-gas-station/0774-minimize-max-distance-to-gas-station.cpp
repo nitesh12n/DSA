@@ -10,7 +10,12 @@ class Solution {
             if (dist==0 || maxDist == 0)
                 continue;
             if(dist > maxDist)
-                 st+= dist/maxDist;
+            {
+                double div = dist/maxDist;
+                 st+= div;
+                 if(div == (int)div)
+                     st--;
+            }
         }
     return st <= k;
     }
