@@ -1,80 +1,62 @@
 class Solution {
-public:
-      void visitElement(vector<vector<int>>& grid, vector<vector<int>>& visited, queue<pair<int, int>>& q, int nrow, int ncol)
+    vector<int>deltaX = {0, -1, 0, 1};
+    vector<int>deltaY = {-1, 0, 1, 0};
+
+    bool isValid(int r, int c, int m, int n)
     {
-        int m = grid.size();
-        int n = grid[0].size();
-        if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && grid[nrow][ncol] == 1
-                       && visited[nrow][ncol] == 0)
-                    {
-                        q.push(make_pair(nrow, ncol));
-                        visited[nrow][ncol] = 1;
-                        
-                    }
+        return r>=0 and r<m and c>=0 and c<n;
     }
-    
-    void bfs(vector<vector<int>>& grid, vector<vector<int>>& visited, int& res)
-    {        
-        queue<pair<int, int>> q;
-        int m = grid.size();
-        int n = grid[0].size();
-        for(int i=0; i<m; i++)
+    int oranges(vector<vector<int>> grid, int m, int n)
+    {
+        queue<pair<pair<int,int>,int>>q;
+        
+        for(int i=0; i< m; i++)
         {
-            for(int j=0; j<n; j++)
-            {   
-              if(grid[i][j] == 2 && visited[i][j] == 0)
-              {
-                 q.push(make_pair(i, j));
-                 visited[i][j] = 1;
-              }
+            for(int j=0; j< n; j++)  
+            {
+                if(grid[i][j] == 2)
+                    q.push({{i, j}, 0});
             }
         }
-        
-        q.push(make_pair(-1, -1));
+        int res = 0;
         
         while(!q.empty())
         {
-            int r = q.front().first;
-            int c = q.front().second;
+            auto cell = q.front();
             q.pop();
-            if (r == -1 and c == -1)
+            int time = cell.second;
+            int row = cell.first.first;
+            int col = cell.first.second;
+            res = time;
+            grid[row][col] = 2;
+            for(int i=0; i <4; i++)
             {
-                if (!q.empty())
+                int r = row + deltaX[i];
+                int c = col + deltaY[i];
+                
+                if(isValid(r, c, m, n) and grid[r][c] == 1)
                 {
-                    q.push(make_pair(-1, -1));
-                    res++;   
+                    q.push({{r,c}, time + 1});
+                    grid[r][c] = 2;
+                    
                 }
             }
-            else
-            {
-                visitElement(grid, visited, q, r -1, c);
-                visitElement(grid, visited, q, r, c-1);
-                visitElement(grid, visited, q, r + 1, c);
-                visitElement(grid, visited, q, r, c + 1);
-            }
-            
-
         }
-        
-        for(int i=0; i<m; i++)
+        for(int i=0; i< m; i++)
         {
-            for(int j=0; j<n; j++)
-            {   
-              if(grid[i][j] == 1 && visited[i][j] == 0)
-                res = -1;
+            for(int j=0; j< n; j++)  
+            {
+                if(grid[i][j] == 1)
+                    return -1;
             }
         }
+    return res;
         
     }
-    
+public:
     int orangesRotting(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size();
+        return oranges(grid, m, n);
         
-        int m = grid.size();
-        int n = grid[0].size();
-        int res = 0;
-        vector<vector<int>>visited(m, vector<int>(n, 0));
-        bfs(grid, visited, res);
-        
-    return res;
     }
 };
