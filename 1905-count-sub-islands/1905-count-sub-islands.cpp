@@ -11,7 +11,6 @@ class Solution {
     {
         int m = grid1.size(), n = grid1[0].size();
         int res = 1;    
-        vis[i][j] = 1;
 
         for(int x=0; x <4; x++)
         {
