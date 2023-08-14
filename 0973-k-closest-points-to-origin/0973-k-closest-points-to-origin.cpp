@@ -1,11 +1,6 @@
 typedef pair<int, pair<int, int>> pqtype;
 class Solution {
     
-    struct customFunc {
-        bool operator()(const pqtype& a, const pqtype& b) {
-            return a.first < b.first;
-        }
-    };
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
         vector<vector<int>> res;
