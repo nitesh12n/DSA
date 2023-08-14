@@ -4,7 +4,7 @@ class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
         vector<vector<int>> res;
-        priority_queue<pqtype, vector<pqtype>>pq;
+        priority_queue<pqtype>pq;
         for(auto point : points)
         {
             int x = point[0], y = point[1];
