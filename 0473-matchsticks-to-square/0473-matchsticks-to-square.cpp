@@ -8,11 +8,7 @@ class Solution {
             if(k==0)
             {
                 return true;
-                for(auto t : taken)
-                {
-                    if( t == false)
-                        return false;
-                }
+                
             }
             currSum=0;
         }
