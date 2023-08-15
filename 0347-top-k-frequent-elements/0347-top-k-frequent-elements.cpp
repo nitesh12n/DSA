@@ -1,3 +1,4 @@
+typedef pair<int,int> pqtype;
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -6,7 +7,7 @@ public:
         
         for(auto num : nums)
             m[num]++;
-        priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int, int>>> pq;
+        priority_queue<pqtype, vector<pqtype>, greater<pqtype>> pq;
         
         for(auto i : m)
         {
