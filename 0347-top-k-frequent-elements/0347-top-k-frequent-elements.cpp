@@ -1,5 +1,13 @@
 typedef pair<int,int> pqtype;
+struct compare
+{
+ bool operator()(const pqtype a, const pqtype b)
+    {
+        return a.first > b.first;
+    }
+};
 class Solution {
+   
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
    
@@ -7,7 +15,7 @@ public:
         
         for(auto num : nums)
             m[num]++;
-        priority_queue<pqtype, vector<pqtype>, greater<pqtype>> pq;
+        priority_queue<pqtype, vector<pqtype>, compare> pq;
         
         for(auto i : m)
         {
