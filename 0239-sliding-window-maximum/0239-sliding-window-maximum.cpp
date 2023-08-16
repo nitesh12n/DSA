@@ -1,19 +1,4 @@
 class Solution {
-    pair<int, int> getMax(vector<int>& nums, int k)
-    {
-        int count=0,maxValue = INT_MIN;
-        for(int i=0; i<k;i++)
-        {
-            if(nums[i] > maxValue)
-            {
-                count=1;
-                maxValue = nums[i];
-            }
-            else if(nums[i] == maxValue)
-                count++;
-        }
-        return {maxValue, count};
-    }
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     
