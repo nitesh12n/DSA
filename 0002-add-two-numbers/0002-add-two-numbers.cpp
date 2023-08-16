@@ -17,7 +17,7 @@ public:
         ListNode* preHead = new ListNode(0);
         ListNode* resList = preHead;
         
-        while(l1 || l2)
+        while(l1 || l2 || carry)
         {
             int value = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
             carry = value/10;
@@ -29,8 +29,6 @@ public:
                 l2 = l2->next;
             resList = resList->next;
         }
-        if(carry)
-            resList->next = new ListNode(carry);
         
         return preHead->next;
     }
