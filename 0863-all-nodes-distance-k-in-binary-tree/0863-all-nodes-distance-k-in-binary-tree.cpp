@@ -11,12 +11,16 @@ class Solution {
     
     void KDistanceChildren(TreeNode* root, int k, vector<int>&res)
     {
-        if(k <= 0 || root == nullptr)
-        {
-            if(root and k==0)
-                res.push_back(root->val);
+        if( k==0 and root)
+        {    
+            res.push_back(root->val);
             return;
-        }            
+        }
+        
+        if( k < 0 || root == nullptr)
+            return;
+        
+                
      
         KDistanceChildren(root->left, k-1, res);
         KDistanceChildren(root->right, k-1, res);
@@ -33,31 +37,32 @@ class Solution {
             return 0;
         }
         
-        int l = -1, r = -1;
-        l = distance(root->left, target, k, res);
         
+        int l = distance(root->left, target, k, res);
         if(l != -1)
         {
             if(l + 1 == k)
                 res.push_back(root->val);
-            else if(l + 1 < k)
-                KDistanceChildren(root->right, k-l-2, res);      
+            else 
+                KDistanceChildren(root->right, k-l-2, res);  
+            
             return l + 1;
         }
-        else
+        int r = distance(root->right, target, k, res);
+        
+        if(r != -1)
         {
-             r = distance(root->right, target, k, res);
-            if(r == -1)
-                return -1;
-            
-             if(r + 1 == k)
+            if(r + 1 == k)
                 res.push_back(root->val);
-            else if(r + 1 < k)
+            else
                 KDistanceChildren(root->left, k-r-2, res); 
+            
             return r + 1;
         }
+        
     return -1;
     }
+    
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
         
