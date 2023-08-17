@@ -30,9 +30,10 @@ public:
         
         while(!q.empty())
         {
-            int i = q.front().first.first;
-            int j = q.front().first.second;
-            int d = q.front().second;
+            auto element = q.front();
+            int i = element.first.first;
+            int j = element.first.second;
+            int d = element.second;
             q.pop();            
             dist[i][j] = d;
             
