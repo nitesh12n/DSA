@@ -19,9 +19,7 @@ class Solution {
         
         if( k < 0 || root == nullptr)
             return;
-        
-                
-     
+             
         KDistanceChildren(root->left, k-1, res);
         KDistanceChildren(root->right, k-1, res);
     }
@@ -36,8 +34,7 @@ class Solution {
             KDistanceChildren(root, k, res);
             return 0;
         }
-        
-        
+               
         int l = distance(root->left, target, k, res);
         if(l != -1)
         {
@@ -64,8 +61,7 @@ class Solution {
     }
     
 public:
-    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-        
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {        
         vector<int>res;
         distance(root, target->val, k, res);  
         return res;
