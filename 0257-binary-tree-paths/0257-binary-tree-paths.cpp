@@ -16,14 +16,16 @@ public:
         if(root == nullptr)
             return;
         
-        s+= s.empty() ? to_string(root->val) : ("->" + to_string(root->val));
+        s+= to_string(root->val);
         if(root->left == nullptr && root->right == nullptr)
         {
             res.push_back(s);
             return;
-        }        
-            paths(root->left, s, res);
-            paths(root->right, s, res);
+        }
+        
+        s+="->";
+        paths(root->left, s, res);
+        paths(root->right, s, res);
         
 
     }
