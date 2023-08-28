@@ -30,16 +30,15 @@ public:
             int i = cell.first.first;
             int j = cell.first.second;
             int dist = cell.second;
+            if(rooms[i][j] == INF)
+                rooms[i][j] = dist;
             for(int x=0; x < 4; x++)
             {
                 int r = i + deltaX[x];
                 int c = j + deltaY[x];
 
                 if(isValid(r, c, m, n) and rooms[r][c] == INF)
-                {
                     q.push({{r, c}, dist + 1}); 
-                    rooms[r][c] = dist + 1;
-                }
             }
         }          
     }
