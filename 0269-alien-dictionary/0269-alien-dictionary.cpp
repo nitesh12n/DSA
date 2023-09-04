@@ -2,7 +2,6 @@ class Solution {
 public:
     string alienOrder(vector<string>& words) {
         
-        int letterCount=0;
         map<char, int>m;
         for(int i=0; i<words.size();i++)
         {
@@ -10,7 +9,6 @@ public:
             {
                 if(m.find(ch)==m.end())
                 {
-                    letterCount++;
                     m[ch]=0;
                 }
             }
@@ -21,12 +19,12 @@ public:
             string s1 = words[i-1];
             string s2 = words[i];
             
-            int j = 0;
+            int j = 0, len = min(s1.size(), s2.size());
             
-            while(j < s1.size() && j < s2.size() && s1[j] == s2[j])
+            while(j < len && s1[j] == s2[j])
                 j++;
             
-            if(j<s1.size() && j<s2.size())
+            if(j<len)
             {
                 adj[s1[j]-'a'].push_back(s2[j]);   
                 m[s2[j]]++;
@@ -34,6 +32,7 @@ public:
             else if(j < s1.size() and j == s2.size())
                 return "";
         }
+        
         queue<char>q;
         string res;
         for(auto it = m.begin(); it != m.end(); it++)
