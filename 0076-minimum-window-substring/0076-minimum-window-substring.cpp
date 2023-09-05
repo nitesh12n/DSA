@@ -20,19 +20,12 @@ public:
             countT[ch]++;
         
         int l=0;
-        while(l < m and countT.find(s[l]) == countT.end())
-            l++;
-        int r = l + n-1,i=l;
         
-        while(i <= r)
-        {
-           countS[s[i]]++;   
-           i++;
-        }
+        int r=-1, i=l;
         int start = -1, end = -1, res = INT_MAX;
         while( r < m)
         {
-            if(isValid(countS, countT))
+            if(r - l + 1 >= n and isValid(countS, countT))
             {
                 if(r - l + 1 < res)
                 {
