@@ -9,25 +9,27 @@
  * };
  */
 class Solution {
+    int getLength(ListNode* head)
+    {
+        int length = 0;
+        while(head)
+        {
+            length++;
+            head = head->next;        
+        }
+    return length;
+    }
 public:
     vector<ListNode*> splitListToParts(ListNode* head, int k) {
         
-        int N = 0;
-        ListNode* temp = head;
-        while(temp)
-        {
-            N++;
-            temp = temp->next;        
-        }
-        
-        int size = N/k;
-        int remainder = N%k;
+        int N = getLength(head);  
+        int batchSize = N/k, extraNodesCount = N%k;
+        ListNode*temp = head, *prev = head;
         vector<ListNode*> res; 
-        temp = head;
-        ListNode* prev = head;
-        for(int i = 0; i < k; i++)
+        
+        while(k--)
         {
-            int elements = remainder > 0 ? (size + 1) : size;
+            int elements = extraNodesCount > 0 ? (batchSize + 1) : batchSize;
             res.push_back(temp);
             if (prev)
             {
@@ -39,7 +41,7 @@ public:
                 prev->next =nullptr;
                 
             }            
-            remainder --;     
+            extraNodesCount --;     
         }
     return res;
     }
