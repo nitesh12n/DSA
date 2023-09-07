@@ -25,20 +25,21 @@ public:
         //for(int j = 0; j < n;j++)
         //    res = min(res, minimumTotal(triangle, n - 1, j, dp));
 
-        vector<vector<int>>dp(n, vector<int>(n, 1e7));
+        vector<vector<int>>dp(2, vector<int>(n, 1e7));
         dp[0][0] = triangle[0][0];
         for(int i = 1; i< n; i++)
         {
             for(int j = 0; j <= i; j++)
             {
+                int temp = 1e7;
                 if(j > 0)
-                    dp[i][j] = dp[i-1][j-1] + triangle[i][j];
-                dp[i][j] = min(dp[i][j], dp[i-1][j] + triangle[i][j]);
+                    temp = dp[(i-1)%2][j-1] + triangle[i][j];
+                dp[i%2][j] = min(temp, dp[(i-1)%2][j] + triangle[i][j]);
             }
         }
         
         for(int j = 0; j < n;j++)
-            res = min(res, dp[n-1][j]);
+            res = min(res, dp[(n-1)%2][j]);
         return res;
     }
 };
