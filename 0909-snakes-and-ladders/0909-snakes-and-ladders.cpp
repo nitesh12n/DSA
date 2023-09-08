@@ -46,8 +46,10 @@ public:
                     dist[next] = dist[cell] + 1;
                     q.push(next);
                 }
+                if(next == destination)
+                    return dist[destination];
             }
         }
-        return dist[destination];
+        return -1;
     }
 };
