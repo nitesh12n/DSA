@@ -12,7 +12,8 @@ public:
            {
                prefixSum+= row[i];
                m[prefixSum]++;
-               res = max(res, m[prefixSum]);
+               if(m[prefixSum] > res)
+                res = m[prefixSum];
            }
         }
         return wall.size() - res;
