@@ -20,7 +20,7 @@ class Solution {
             str+=st.top();
             st.pop();
         }
-    return str;
+        return str;
     }
     
 public:
