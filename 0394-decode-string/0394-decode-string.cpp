@@ -1,4 +1,28 @@
 class Solution {
+    
+    int getCount(stack<char>&st)
+    {
+        string num;
+        while(!st.empty() and isdigit(st.top()))
+        {
+            num+=st.top();
+            st.pop();
+        }
+        reverse(num.begin(), num.end());
+        return stoi(num); 
+    }
+    
+    string getString(stack<char>&st)
+    {
+        string str;
+        while(!st.empty() and st.top() != '[')
+        {
+            str+=st.top();
+            st.pop();
+        }
+    return str;
+    }
+    
 public:
     string decodeString(string s) {
         
@@ -8,21 +32,9 @@ public:
         {
             if(ch == ']')
             {
-                string str;
-                while(st.top() != '[')
-                {
-                    str+=st.top();
-                    st.pop();
-                }
+                string str = getString(st);               
                 st.pop();
-                string num;
-                while(!st.empty() and isdigit(st.top()))
-                {
-                    num+=st.top();
-                    st.pop();
-                }
-                reverse(num.begin(), num.end());
-                int count = stoi(num);                
+                int count = getCount(st);                
                 while(count--)
                 {
                     for(int i = str.size() -1; i>=0; i--)
@@ -32,13 +44,9 @@ public:
             else
                 st.push(ch);
         }
-        string res;
-        while(!st.empty())
-        {
-            res+= st.top();
-           st.pop(); 
-        }
+        
+        string res  = getString(st);
         reverse(res.begin(), res.end());
-    return res;
+        return res;
     }
 };
