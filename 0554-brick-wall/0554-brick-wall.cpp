@@ -3,12 +3,7 @@ public:
     int leastBricks(vector<vector<int>>& wall) {
         
         unordered_map<int, int>m;
-        int prefixSum;
-        int totalRowSum = 0;
-        int res = 0;
-        
-        for(int width : wall[0])
-            totalRowSum+=width;
+        int prefixSum, res = 0;
         
         for(auto row : wall)
         {
@@ -20,14 +15,6 @@ public:
                res = max(res, m[prefixSum]);
            }
         }
-        
-        //int totalRowSum = prefixSum;
-        /*for(auto it : m)
-        {
-            if(it.first != totalRowSum)
-                res = max(res, it.second);
-        }
-        */
         return wall.size() - res;
     }
 };
