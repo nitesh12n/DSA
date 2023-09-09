@@ -4,49 +4,27 @@ public:
         
         if(fruits.size() == 1)
             return 1;
-        int firstFruitType = -1,secondFruitType = -1;
-        int firstFruitCount = 0,secondFruitCount = 0;
-        
-        
         int l =0, r = 1;
-        firstFruitType = fruits[0];
-        firstFruitCount = 1;
-        secondFruitType = -1;
-        int res = 0;
+        
+        int res = 1;
+        unordered_map<int, int>m;
+        m[fruits[l]]++;
+        
         while(l <=r and r < fruits.size())
         {
-            if(firstFruitType == fruits[r])
+            if(m.find(fruits[r]) == m.end() and m.size() == 2)
             {
-                firstFruitCount++;
-                r++;
-            }
-            else if(secondFruitType == -1 or secondFruitType == fruits[r])
-            {
-                secondFruitType = fruits[r];
-                secondFruitCount++;
-                r++;
-            } 
-            else
-            {
-                if(fruits[l] == firstFruitType)
-                    firstFruitCount--;
-                else
-                    secondFruitCount--;
-                
-                if(secondFruitCount == 0)
-                    secondFruitType = -1;
-
-                if(firstFruitCount == 0)
-                {
-                    firstFruitCount = secondFruitCount;
-                    firstFruitType = secondFruitType;
-                    secondFruitCount = 0;
-                    secondFruitType = -1;
-                }
-                
+                m[fruits[l]]--;
+                if(m[fruits[l]] == 0)
+                    m.erase(fruits[l]);
                 l++;
             }
-            res = max(res, firstFruitCount + secondFruitCount);
+            else
+            {
+                m[fruits[r]]++;
+                res = max(res, r - l + 1);
+                r++;
+            }
         }
     return res;
     }
