@@ -15,8 +15,7 @@ public:
         {
             if(nums[i] + nums[j] <= target)
              {
-                int count = power[j - i];
-                res+=count%mod;
+                res+=power[j - i]%mod;
                 res%=mod;
                 i++;
              }
