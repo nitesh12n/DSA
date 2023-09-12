@@ -17,8 +17,7 @@ public:
                 m[ch]--;
                 res++;
             }
-            if(m[ch] > 0)
-                seenFreq.insert(m[ch]);
+            seenFreq.insert(m[ch]);
         }
     return res;
     }
