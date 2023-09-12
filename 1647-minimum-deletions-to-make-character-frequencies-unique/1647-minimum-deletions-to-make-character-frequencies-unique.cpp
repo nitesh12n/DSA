@@ -23,6 +23,7 @@ public:
         
         for(auto it : m)
             freqToChar[it.second].push_back(it.first);
+        
         int res = 0;
         for(auto  it : freqToChar)
         {
@@ -32,9 +33,7 @@ public:
             if(values.size() > 1)
             {
                 for(int i = 0; i < values.size() - 1; i++)
-                {
                     res+=updateFrequency(freqToChar, values[i], freq);
-                }
             }
         }
     return res;
