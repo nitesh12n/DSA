@@ -19,9 +19,7 @@ public:
         for(int i = 0; i < n; i++)
         {
             for(int j = 0; j < n; j++)
-            {
-                res+= min(rowMax[i] - grid[i][j], columnMax[j] - grid[i][j]);
-            }
+                res+= min(rowMax[i], columnMax[j]) - grid[i][j];
         }
         return res;
     }
