@@ -5,7 +5,7 @@ class Solution {
         string res;
         
         for(char ch : s)
-            res+= (char)((ch - 'a') >= shift ? (ch - shift) : (ch + 26 - shift));
+            res+= (char)((ch + 26 - shift)%26);
     return res;
     }
 public:
