@@ -42,9 +42,18 @@ public:
         
         ListNode *head = nullptr;
         
-        for(auto list : lists)
-            head = mergeLists(head, list);
+        int n = lists.size();
+        if(n == 0)
+            return head;
         
-        return head;
+        int interval = 1;
+        while(interval < n)
+        {
+            for(int i = 0; i < n - interval; i+= interval*2)
+                lists[i] = mergeLists(lists[i], lists[i + interval]);
+            interval*=2;
+        }
+        
+        return lists[0];
     }
 };
