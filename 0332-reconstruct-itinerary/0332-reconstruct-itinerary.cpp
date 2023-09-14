@@ -4,7 +4,6 @@ class Solution {
     {
         if(temp.size() == edges + 1)
             return temp;
-        vector<string>res;
         
         for(auto it : graph[airport])
         {
@@ -14,7 +13,7 @@ class Solution {
             {
                 freq[key]--;
                 temp.push_back(it);
-                res = dfs(graph, it, temp, freq, edges);
+                auto res = dfs(graph, it, temp, freq, edges);
                 if(res.size() > 0)
                     return res;
                 temp.pop_back();
