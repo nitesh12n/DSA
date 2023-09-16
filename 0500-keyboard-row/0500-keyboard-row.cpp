@@ -21,7 +21,10 @@ public:
             for(int i = 1; i < word.size(); i++)
             {
                 if(m[tolower(word[i])] != row)
+                {
                     include = false;
+                    break;
+                }
             }
             if(include)
                 res.push_back(word);
