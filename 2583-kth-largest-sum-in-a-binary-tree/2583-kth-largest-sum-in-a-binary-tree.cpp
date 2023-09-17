@@ -16,7 +16,6 @@ public:
         queue<TreeNode*>q;
         priority_queue<long, vector<long>, greater<long>>pq;
         q.push(root);
-        int level = 0;
         
         while(!q.empty())
         {
@@ -36,7 +35,6 @@ public:
             pq.push(sum);
             if(pq.size() > k)
                 pq.pop();
-            level++;
         }
         return pq.size() < k ? -1 : pq.top();
     }
