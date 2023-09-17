@@ -9,7 +9,7 @@ class Solution {
         }
     return true;
     }
-    bool camelMatch(string word, string pattern, int i, int j)
+    bool camelMatch(string word, string pattern, int i, int j, vector<vector<int>>& dp)
     {
        if(i == word.size() and j == pattern.size())
            return true;
@@ -18,23 +18,28 @@ class Solution {
         if(j == pattern.size())
             return isRemainingValid(word, i);
         
+        if(dp[i][j] != -1)
+            return dp[i][j];
+        
         bool res = false;
         
         if(word[i] == pattern[j])
-            res = camelMatch(word, pattern, i+1, j+1);
+            res = camelMatch(word, pattern, i + 1, j + 1, dp);
         else if(word[i] == tolower(word[i]))
-            res =  camelMatch(word, pattern, i+1, j);
+            res =  camelMatch(word, pattern, i + 1, j, dp);
         
-     return res;
+     return dp[i][j] = res;
     }
     
 public:
     vector<bool> camelMatch(vector<string>& queries, string pattern) {
         
         vector<bool>res;
-        
         for(auto query :queries)
-            res.push_back(camelMatch(query, pattern, 0, 0));
+        {
+            vector<vector<int>>dp(query.size(), vector<int>(pattern.size(), -1));
+            res.push_back(camelMatch(query, pattern, 0, 0, dp));
+        }
 
     return res;
     }
