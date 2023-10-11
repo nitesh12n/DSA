@@ -11,8 +11,8 @@ public:
                 return false;
             l++,r--;
         }
-        if(l == r and num[l] != '1' and num[l] != '8' and num[l] != '0')
-            return false;
+        //if(l == r and num[l] != '1' and num[l] != '8' and num[l] != '0')
+           // return false;
     return true;
     }
 };
