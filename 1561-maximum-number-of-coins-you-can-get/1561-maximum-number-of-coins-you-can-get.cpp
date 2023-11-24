@@ -6,14 +6,12 @@ public:
         sort(piles.begin(), piles.end());
         
         
-        int l = 0, r = piles.size() - 1;
+        int l = piles.size()/3, r = piles.size() - 2;
         
         int res = 0;
-        while(l < r)
+        while( l <= r)
         {
-            if(r - 1 > l)
-                res+= piles[r - 1];
-            l++;
+            res+= piles[r];
             r-=2;
         }
     return res;
