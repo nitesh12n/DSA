@@ -40,7 +40,7 @@ public:
             if(index == -1)
                 operations = totalSum - query*n; 
             else
-                operations = (query*(index + 1) - prefixSum[index]) + (totalSum - prefixSum[index]) - query*(n - index - 1);
+                operations = query*(index + 1) - prefixSum[index] + totalSum - prefixSum[index] - query*(n - index - 1);
 
             res.push_back(operations);
         }
