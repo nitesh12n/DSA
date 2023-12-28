@@ -7,7 +7,6 @@ class Solution {
         if(index == s.size())
             return 0;
         
-        //string key = to_string(index) + "," + lastChar + "," + to_string(lastCharCount) + "," + to_string(k);
         int key = index * 101 * 27 * 101 + (lastChar - 'a') * 101 * 101 + lastCharCount * 101 + k;
         if(dp.find(key) != dp.end())
             return dp[key];
