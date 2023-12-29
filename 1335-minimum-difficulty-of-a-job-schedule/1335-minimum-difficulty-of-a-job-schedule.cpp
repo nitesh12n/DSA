@@ -11,6 +11,9 @@ class Solution {
         if(index == jobDifficulty.size() and d > 0)
             return res;
         
+        if(dp[index][d] != -1)
+            return dp[index][d];
+        
         if(d == 1)
         {
             for(int i = index; i < jobDifficulty.size(); i++)
@@ -18,11 +21,8 @@ class Solution {
             return dp[index][d] = difficulty;
         }
 
-        
-        if(dp[index][d] != -1)
-            return dp[index][d];
 
-        for(int i = index; i < jobDifficulty.size(); i++)
+        for(int i = index; i < jobDifficulty.size() - d + 1; i++)
         {
             difficulty = max(difficulty, jobDifficulty[i]);
             int val = minDifficulty(jobDifficulty, i + 1, d - 1, dp);
