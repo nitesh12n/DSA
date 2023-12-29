@@ -22,7 +22,7 @@ class Solution {
         if(dp[index][d] != -1)
             return dp[index][d];
 
-        for(int i = index; i < jobDifficulty.size() - d + 1; i++)
+        for(int i = index; i < jobDifficulty.size(); i++)
         {
             difficulty = max(difficulty, jobDifficulty[i]);
             int val = minDifficulty(jobDifficulty, i + 1, d - 1, dp);
