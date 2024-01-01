@@ -9,7 +9,7 @@ class Solution {
         if(index == workers.size())
             return 0;
         
-        string key = to_string(index) + "," + bikeMask;
+        string key = bikeMask;
         if(dp.find(key) != dp.end())
             return dp[key];
         
