@@ -9,9 +9,8 @@ class Solution {
         if(index == workers.size())
             return 0;
         
-        string key = bikeMask;
-        if(dp.find(key) != dp.end())
-            return dp[key];
+        if(dp.find(bikeMask) != dp.end())
+            return dp[bikeMask];
         
         int res = INT_MAX;
         for(int i = 0; i < bikeMask.size(); i++)
@@ -25,7 +24,7 @@ class Solution {
                     res = min(res, val + getDistance(workers[index], bikes[i]));
             }
         }
-        return dp[key] = res;
+        return dp[bikeMask] = res;
     }
     
 public:
