@@ -16,11 +16,12 @@ public:
         
         queue<TreeNode*>q;
         q.push(root);
-        int res = 0, maxSum = INT_MIN, level = 1;
+        int res = 0, maxSum = INT_MIN, level = 0;
         while(!q.empty())
         {
             int size = q.size();
             int levelSum = 0;
+            level++;
             for(int i = 0; i < size; i++)
             {
                 auto node = q.front();
@@ -37,7 +38,6 @@ public:
                 maxSum = levelSum;
                 res = level;
             }
-            level++;
         }
         return res;
     }
