@@ -4,21 +4,14 @@ public:
         
         unordered_map<int,int> m;
         vector<vector<int>> res;
-        for(auto num : nums)
-            m[num]++;
         
-        for(auto it : m)
+        for(auto num : nums)
         {
-            int freq = it.second;
-            int row = 0;
-            while(freq-- > 0)
-            {
-                if(res.size() <= row)
-                    res.push_back({it.first});
-                else
-                    res[row].push_back(it.first);
-                row++;
-            }
+            if(res.size() <= m[num])
+                res.push_back({num});
+            else
+                res[m[num]].push_back(num);
+            m[num]++;
         }
         return res;
     }
