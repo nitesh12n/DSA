@@ -3,23 +3,21 @@ public:
     string removeDuplicates(string s) {
      
         int size = s.size();
-        stack<char> st;
+        vector<char> stack;
         for(int i=0;i<size;i++)
         {
-             if(!st.empty() && st.top() == s[i])
-                st.pop();
+             if(!stack.empty() && stack.back() == s[i])
+                stack.pop_back();
              else
-                 st.push(s[i]);
+                 stack.push_back(s[i]);
         }
         
-        string res(st.size(), '0');
-        int i = st.size() - 1;
-        
-        while(i >= 0)
+        string result = "";
+        while(!stack.empty())
         {
-            res[i--] = st.top();
-            st.pop();
+            result=stack.back() + result;
+            stack.pop_back();
         }
-        return res;
+        return result;
     }
 };
