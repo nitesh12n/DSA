@@ -1,26 +1,29 @@
 class Solution {
     
-    int length(vector<int>& nums, int i, int prev, vector<vector<int>>& dp)
+    int lengthOfLIS(vector<int>& nums, int index, int prev, vector<vector<int>>& dp)
     {
-        if(i == nums.size())
+        if(index == nums.size())
             return 0;
         
-        int l = -1e6;
         
-        if(dp[i][prev+1] != -1)
-            return dp[i][prev+1];
-        //take
-        if(prev == -1 or nums[prev] < nums[i]) 
-            l = length(nums, i + 1, i, dp) + 1;
+        if(dp[index][prev + 1] != -1)
+            return dp[index][prev + 1];
         
-        //not take
-        int r = length(nums, i + 1, prev, dp);
+        int notTake = lengthOfLIS(nums, index + 1, prev, dp);
         
-        return dp[i][prev+1] = max(l, r);
+        int take = 0;
+        
+        if(prev == -1 or nums[index] > nums[prev])
+            take = 1 + lengthOfLIS(nums, index + 1, index, dp);
+        
+        return dp[index][prev + 1] = max(notTake, take);
     }
+    
+    
+    
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<vector<int>>dp(nums.size(), vector<int>(nums.size()+1, -1));
-        return length(nums, 0, -1, dp);
+        vector<vector<int>>dp(nums.size(), vector<int>(nums.size() + 1, -1));
+        return lengthOfLIS(nums, 0, -1, dp);
     }
 };
