@@ -3,24 +3,22 @@ public:
     vector<int> missingRolls(vector<int>& rolls, int mean, int n) {
      
         
-        int m = rolls.size(), sum = 0;
-        
+        int m = rolls.size();   
+        int missingSum = mean*(n + m);
         for(auto roll : rolls)
-            sum+=roll;
+            missingSum-=roll;
         
-        int missingSum = mean*(n + m) - sum;
-        int minValue = missingSum/n, extra = missingSum%n;
-        if(minValue > 6 or minValue < 1 or missingSum>6*n)
+        if(missingSum < n or missingSum>6*n)
             return {};
-        vector<int>res;
+        
+        int minValue = missingSum/n, extra = missingSum%n;
 
+        vector<int>res;
         for(int i = 0; i < n; i++)
         {
             res.push_back(minValue);
             if(extra)
                 res[i]++, extra--;
-            //if(res[i] > 6)
-            //    return {};
             
         }
         return res;
