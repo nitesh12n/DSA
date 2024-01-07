@@ -10,7 +10,7 @@ public:
         
         int missingSum = mean*(n + m) - sum;
         int minValue = missingSum/n, extra = missingSum%n;
-        if(minValue > 6 or minValue < 1)
+        if(minValue > 6 or minValue < 1 or missingSum>6*n)
             return {};
         vector<int>res;
 
@@ -19,8 +19,8 @@ public:
             res.push_back(minValue);
             if(extra)
                 res[i]++, extra--;
-            if(res[i] > 6)
-                return {};
+            //if(res[i] > 6)
+            //    return {};
             
         }
         return res;
