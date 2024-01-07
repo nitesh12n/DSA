@@ -4,7 +4,7 @@ class Solution {
     {
         res = max(res, time);
         for(auto s : subordinates[id])
-            dfs(n, s, subordinates, informTime, time + informTime[id], res);
+            dfs(n, s, subordinates, informTime, time + informTime[s], res);
     }
     
     
@@ -16,7 +16,7 @@ public:
             if(manager[i] != -1)
                 subordinates[manager[i]].push_back(i);
         int res = 0;
-        dfs(n, headID, subordinates, informTime, 0, res);
+        dfs(n, headID, subordinates, informTime, informTime[headID], res);
         return res;
         
     }
