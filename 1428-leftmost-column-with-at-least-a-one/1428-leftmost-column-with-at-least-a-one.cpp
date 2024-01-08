@@ -14,14 +14,15 @@ public:
     int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
         
         auto dimensions = binaryMatrix.dimensions();
-        int res = -1, i = 0, j = dimensions[1] - 1;
-        while(i < dimensions[0] and j >= 0)
+        int rows = dimensions[0], cols = dimensions[1];
+        int res = -1, i = 0, j = cols - 1;
+        while(i < rows and j >= 0)
         {
             if(binaryMatrix.get(i, j) == 0)
                 i++;
             else
                 res = j--;
         }
-    return res;
+        return res;
     }
 };
