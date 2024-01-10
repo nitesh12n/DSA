@@ -16,10 +16,13 @@ public:
             while(j < colors.size() and colors[j] == colors[i])
                     j++;
             
-            if(colors[i] == 'A' and j - i - 2 > 0)
-                countA+= j - i - 2;
-            else if(j - i - 2 > 0)
-                countB+= j - i - 2;
+            int turns = j - i - 2;
+            
+            if(turns > 0 and colors[i] == 'A')
+                countA+= turns;
+            else if(turns > 0)
+                countB+= turns;
+            
             i = j;
         }
         
