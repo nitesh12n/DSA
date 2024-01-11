@@ -10,26 +10,24 @@
  * };
  */
 class Solution {
-    pair<int,int> maxDiff(TreeNode* root, int& res)
+    
+    int maxAncestorDiff(TreeNode* root, int maxi, int mini)
     {
         if(!root)
-            return {INT_MAX, INT_MIN};
+            return maxi - mini;
         
+        maxi = max(maxi, root->val);
+        mini = min(mini, root->val);
         
-        auto l = maxDiff(root->left, res);
-        auto r = maxDiff(root->right, res);
-        
-        if(l.first != INT_MAX or r.first != INT_MAX)
-            res = max(res, abs(root->val - min(l.first,r.first)));
-        if(l.second != INT_MIN or r.second != INT_MIN)
-            res = max(res, abs(root->val - max(l.second,r.second)));
-        
-        return {min(root->val, min(l.first, r.first)), max(root->val, max(l.second, r.second))};
+        int l = maxAncestorDiff(root->left, maxi, mini);
+        int r = maxAncestorDiff(root->right, maxi, mini);
+
+        return max(l, r);
     }
+    
+    
 public:
     int maxAncestorDiff(TreeNode* root) {
-        int res = 0;
-        maxDiff(root, res);
-        return res;
+        return maxAncestorDiff(root, INT_MIN, INT_MAX);
     }
 };
