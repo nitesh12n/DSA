@@ -1,5 +1,5 @@
 class Solution {
-    long long numDistinct(string& s, string& t, int i, int j, vector<vector<long long>>& dp) {
+    int numDistinct(string& s, string& t, int i, int j, vector<vector<int>>& dp) {
         
         if(j == t.size())
             return 1;
@@ -17,8 +17,7 @@ class Solution {
     }
 public:
     int numDistinct(string s, string t) {
-        vector<vector<long long>>dp(s.size(), vector<long long>(t.size(), -1));
-        long long res =  numDistinct(s, t, 0, 0, dp);
-        return res;
+        vector<vector<int>>dp(s.size(), vector<int>(t.size(), -1));
+        return numDistinct(s, t, 0, 0, dp);
     }
 };
