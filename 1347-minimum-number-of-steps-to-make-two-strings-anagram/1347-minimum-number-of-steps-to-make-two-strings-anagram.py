@@ -1,27 +1,19 @@
 class Solution:
     def minSteps(self, s: str, t: str) -> int:
         
-        freqS = {}
-        freqT = {}
+        freq = {}
         
         
         for ch in s:
-            if freqS.get(ch) is None:
-                freqS[ch] = 1
-            else:    
-                freqS[ch]+=1
+            freq[ch] = freq.get(ch, 0) + 1
+            
         for ch in t:
-            if freqT.get(ch) is None:
-                freqT[ch] = 1
-            else:    
-                freqT[ch]+=1
+            freq[ch] = freq.get(ch, 0) - 1
             
         res = 0
-        for ch, freq  in freqS.items():
+        for ch, fr  in freq.items():
             
-            if freqT.get(ch) is None:
-                res+= freq
-            elif freq > freqT.get(ch):
-                res+= freq - freqT[ch]
+            if fr > 0:
+                res+= fr
         return res
             
