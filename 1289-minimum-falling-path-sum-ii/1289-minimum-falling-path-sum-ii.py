@@ -17,10 +17,7 @@ class Solution:
                 return dp[r,c]    
             
             #dp[r, c] =  grid[r][c]  + min(minPathSum(r + 1, c - 1), minPathSum(r + 1, c + 1))
-            dp[r, c] = grid[r][c] + min(
-                minPathSum(r + 1, nc) for nc in range(n) if nc != c)
-            
-            
+            dp[r, c] = grid[r][c] + min(minPathSum(r + 1, nc) for nc in range(n) if nc != c)   
             return dp[r, c]
         
         for col in range(0, n):
