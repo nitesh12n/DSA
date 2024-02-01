@@ -8,7 +8,7 @@ class Solution:
         res = []
         for i in range(1, len(nums) - 1, 3):
             
-            if abs(nums[i-1] - nums[i+1]) <=k:
+            if nums[i+1] - nums[i-1] <=k:
                 res.append([nums[i-1], nums[i], nums[i+1]])
             else:
                 return []
