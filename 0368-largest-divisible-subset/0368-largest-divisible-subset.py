@@ -2,13 +2,19 @@ class Solution:
     def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
         
         
-        subsets = {-1 : set()}
+        subsets = {}
         
         nums.sort()
-        for num in nums:
+        for i in range(0, len(nums)):
             
-            subsets[num] = max([subsets[k] for k in subsets if num % k == 0], key=len)
-            subsets[num] = subsets[num].union({num})
-            
-        return list(max(subsets.values(), key=len))
+            maxSubset = []
+            subsets[nums[i]] = []
+            for k in range(0, i):
+                
+                if nums[i] % nums[k] == 0 and len(maxSubset) < len(subsets[nums[k]]):   
+                    maxSubset = subsets[nums[k]]
+
+            subsets[nums[i]] = maxSubset + [nums[i]]
+    
+        return max(subsets.values(), key=len)
         
