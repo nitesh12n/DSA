@@ -1,22 +1,15 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-        m = {}
-        
-        
-        for s in strs:
+        m = {} 
+        for s in strs:        
+            key = str(sorted(s))
             
-            key = ''.join(sorted(s))
-            
-            if key not in m:
-                m[key] = [s]
+            if key in m:
+                m[key].append(s)              
             else:
-                m[key].append(s)
+                m[key] = [s]
                 
-        res = []
-        for key in  m:
-            res.append(m[key])
-            
-        return res
+        return m.values()
             
             
