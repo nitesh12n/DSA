@@ -9,11 +9,15 @@ class Solution:
             if nums[i] == 1:
                 curr+=1
             else:
+                res = max(res, prev + curr)
                 prev = curr
                 curr = 0
-            res = max(res, prev + curr)
                 
         if curr == n:
             return n - 1
+        
+        if nums[-1] == 1:
+            res = max(res, prev + curr)
+        
         
         return res
