@@ -15,10 +15,10 @@ class Solution:
             
             if word1[i] == word2[j]:
                 dp[i][j] = 1 + lcs(i + 1, j + 1)
-                return 1 + lcs(i + 1, j + 1)
+                return dp[i][j]
             
             dp[i][j] = max(lcs(i + 1, j), lcs(i, j + 1))
-            return max(lcs(i + 1, j), lcs(i, j + 1))
+            return dp[i][j]
         
         lenLCS = lcs(0, 0)
         
